@@ -1,0 +1,26 @@
+{
+    "name": "regulus/activity-log",
+    "description": "Keeps track of user activity",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "TF",
+            "email": "devops@tripfiller.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.x",
+        "jenssegers/mongodb": "2.0.2",
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations",
+            "src/models"
+        ],
+        "psr-0": {
+            "TFleet\\ActivityTracker": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
