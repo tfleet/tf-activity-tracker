@@ -45,8 +45,8 @@ class Activity extends Eloquent {
 
 		$activity = new static;
 
-		if (Config::get('activity-log::autoSetUserId')) {
-			$user = Config::get('activity-log::authMethod');
+		if (Config::get('tf-activity-tracker::autoSetUserId')) {
+			$user = Config::get('tf-activity-tracker::authMethod');
 			$activity->user_id = isset($user->id)             ? $user->id            : 0;
 		}
 		if (isset($data['userId']))
@@ -88,16 +88,16 @@ class Activity extends Eloquent {
 	public function getName()
 	{
 		if ((bool) $this->developer) {
-			return Config::get('activity-log::developerName');
+			return Config::get('tf-activity-tracker::developerName');
 		} else {
 			$user = $this->user;
 			if (empty($user))
 				return "Unknown User";
 
-			if (Config::get('activity-log::usernameAsName')) {
+			if (Config::get('tf-activity-tracker::usernameAsName')) {
 				return $user->username;
 			} else {
-				if (Config::get('activity-log::fullNameLastNameFirst')) {
+				if (Config::get('tf-activity-tracker::fullNameLastNameFirst')) {
 					return $user->last_name.', '.$user->first_name;
 				} else {
 					return $user->first_name.' '.$user->last_name;
@@ -123,7 +123,7 @@ class Activity extends Eloquent {
 	 */
 	public function getIcon()
 	{
-		$actionIcons = Config::get('activity-log::actionIcons');
+		$actionIcons = Config::get('tf-activity-tracker::actionIcons');
 		if (!is_null($this->action) && $this->action == "" || !isset($actionIcons[$this->action]))
 			return $actionIcons['X'];
 
