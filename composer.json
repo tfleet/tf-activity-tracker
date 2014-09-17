@@ -1,5 +1,5 @@
 {
-    "name": "regulus/activity-log",
+    "name": "tfleet/tf-activity-tracker",
     "description": "Keeps track of user activity",
     "license": "MIT",
     "authors": [
