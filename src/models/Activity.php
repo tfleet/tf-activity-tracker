@@ -57,6 +57,7 @@ class Activity extends Eloquent {
 		$activity->action       = isset($data['action'])      ? $data['action']      : "";
 		$activity->description  = isset($data['description']) ? $data['description'] : "";
 		$activity->details      = isset($data['details'])     ? $data['details']     : "";
+		$activity->code		    = isset($data['code'])     	  ? $data['code']     	 : "";
 
 		//set action and allow "updated" boolean to replace activity text "Added" or "Created" with "Updated"
 		if (isset($data['updated'])) {
@@ -73,7 +74,7 @@ class Activity extends Eloquent {
 		//set developer flag
 		$activity->developer  = !is_null(Session::get('developer')) ? true : false;
 
-		$activity->ip_address = Request::getClientIp();
+		$activity->ip_address = Request::header('X-Real-Ip') ? : Request::getClientIp();
 		$activity->user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : "";
 		$activity->save();
 
