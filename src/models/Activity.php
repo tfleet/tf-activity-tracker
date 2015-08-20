@@ -74,7 +74,7 @@ class Activity extends Eloquent {
 		//set developer flag
 		$activity->developer  = !is_null(Session::get('developer')) ? true : false;
 
-		$activity->ip_address = Request::header('X-Real-Ip') ? : Request::getClientIp();
+		$activity->ip_address = Request::getClientIp();
 		$activity->user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : "";
 		$activity->save();
 
